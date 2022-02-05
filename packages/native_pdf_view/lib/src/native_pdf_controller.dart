@@ -18,7 +18,7 @@ class PdfController {
   ///
   /// Defaults to 1.0, which means each page fills the viewport in the scrolling
   /// direction.
-  final double viewportFraction;
+  double viewportFraction;
 
   _PdfViewState? _pdfViewState;
   PageController? _pageController;
@@ -83,7 +83,9 @@ class PdfController {
   Future<void> loadDocument(
     Future<PdfDocument> documentFuture, {
     int initialPage = 1,
+    double viewportFraction,
   }) {
+    viewportFraction = viewportFraction;
     _pdfViewState!._changeLoadingState(_PdfViewLoadingState.loading);
     return _loadDocument(documentFuture, initialPage: initialPage);
   }
