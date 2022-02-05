@@ -83,16 +83,17 @@ class PdfController {
   Future<void> loadDocument(
     Future<PdfDocument> documentFuture, {
     int initialPage = 1,
-    double viewportFraction = 1.0,
+    double vpFaction = 1.0,
   }) {
-    viewportFraction = viewportFraction;
     _pdfViewState!._changeLoadingState(_PdfViewLoadingState.loading);
-    return _loadDocument(documentFuture, initialPage: initialPage);
+    return _loadDocument(documentFuture,
+        initialPage: initialPage, vpFaction: vpFaction);
   }
 
   Future<void> _loadDocument(
     Future<PdfDocument> documentFuture, {
     int initialPage = 1,
+    double vpFaction = 1.0,
   }) async {
     assert(_pdfViewState != null);
 
@@ -108,6 +109,7 @@ class PdfController {
       if (page != initialPage) {
         _pdfViewState?.widget.onPageChanged?.call(initialPage);
       }
+      viewportFraction = vpFaction;
       _reInitPageController(initialPage);
       _pdfViewState!._currentIndex = this.initialPage = initialPage;
 
