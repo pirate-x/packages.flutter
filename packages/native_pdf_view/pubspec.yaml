@@ -3,15 +3,19 @@ description: Flutter plugin to render PDF files on Web, MacOS, Windows, Android 
 repository: https://github.com/rbcprolabs/packages.flutter/tree/master/packages/native_pdf_view
 issue_tracker: https://github.com/rbcprolabs/packages.flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+native_pdf_view%22
 version: 5.0.0
+publish_to: none
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
-  flutter: '>=2.0.0'
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=2.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  photo_view: ^0.13.0
+  photo_view:
+    git:
+      url: https://github.com/pirate-x/photo_view.git
+      ref: master
   synchronized: ^3.0.0
   native_pdf_renderer: ^4.0.0
 
@@ -21,5 +25,5 @@ dev_dependencies:
   pedantic: ^1.11.0
 
 # dependency_overrides:
-#   native_pdf_renderer: 
+#   native_pdf_renderer:
 #     path: ../native_pdf_renderer
