@@ -44,6 +44,7 @@ class PdfView extends StatefulWidget {
     this.physics,
     this.backgroundDecoration = const BoxDecoration(),
     this.loaderSwitchDuration = const Duration(seconds: 1),
+    this.padEnds = true,
     Key? key,
   }) : super(key: key);
 
@@ -88,6 +89,9 @@ class PdfView extends StatefulWidget {
 
   /// Determines the physics of a [PdfView] widget.
   final ScrollPhysics? physics;
+  
+  /// Whether to add padding to both ends of the list. Mirror to [PageView.padEnds]
+  final bool padEnds;
 
   /// Default PdfRenderer options
   static Future<PdfPageImage?> _render(PdfPage page) => page.render(
@@ -176,6 +180,7 @@ class _PdfViewState extends State<PdfView> with SingleTickerProviderStateMixin {
         loadingBuilder: (_, __) => widget.pageLoader ?? SizedBox(),
         backgroundDecoration: widget.backgroundDecoration,
         pageController: widget.controller._pageController,
+        padEnds: widget.padEnds,
         onPageChanged: (int index) {
           _currentIndex = index;
           widget.onPageChanged?.call(index + 1);
